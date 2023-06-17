@@ -13,7 +13,7 @@ clock = pygame.time.Clock()
 
 def menu():
     game_over = False
-    screen = pygame.display.set_mode((WIDTH, HEIGHT))#, pygame.NOFRAME)
+    screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.NOFRAME)
     pygame.display.set_caption("Main menu")
     img_menu = pygame.image.load("interface/menu.png")
     img_instructions = pygame.image.load("interface/instructions.png")

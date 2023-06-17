@@ -12,7 +12,7 @@ def main(character):
     pygame.mixer.init()
 
     # Create an 800x600 sized screen
-    screen = pygame.display.set_mode((800, 600), pygame.SRCALPHA)
+    screen = pygame.display.set_mode((800, 600), pygame.SRCALPHA, pygame.NOFRAME)
 
     # Set the title of the window
     pygame.display.set_caption('Spectral Escape')
