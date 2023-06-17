@@ -1,0 +1,4 @@
+jugador: 46x65
+jugadora: 57x71
+blanco 59x61
+azul 57x64 y negro
