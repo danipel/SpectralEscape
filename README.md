@@ -14,7 +14,9 @@ Stealth and adventure game.
 - **Gameplay**
 The player must rescue his kidnapped brother, avoiding being seen by ghosts.
 He must move stealthily, find keys to open doors and search for clues to advance
-the story. 
+the story.
+
+#### For more information check the GDD Spectral Escape.pdf file to read the Game Design Document.
 
 ## Screenshots
 
