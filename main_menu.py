@@ -1,28 +1,35 @@
 import pygame
+import pygame.mixer
 from SpectralEscape import main
 
 
+#  Initialize pygame and mixer (for sound)
 pygame.init()
+pygame.mixer.init()
 
 # Window
 HEIGHT = 600
 WIDTH = 800
 
+#  Initialize clock (for FPS)
 clock = pygame.time.Clock()
 
-
+#  ---The Game---
 def menu():
-    game_over = False
+    #  Initialize screen
     screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.NOFRAME)
     pygame.display.set_caption("Main menu")
+    #  Load images
     img_menu = pygame.image.load("interface/menu.png")
     img_instructions = pygame.image.load("interface/instructions.png")
     img_pre_game = pygame.image.load("interface/pre_game.png")
+    #  Set First image
     img = img_menu
-    screen.blit(img_menu, (0, 0))
-    pygame.display.update()
-    clock.tick(60)
+    #  Initialize control variable
+    game_over = False
     while not game_over:
+        pygame.display.update()
+        screen.blit(img, (0, 0)) 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -35,10 +42,10 @@ def menu():
                         if x > 238 and x < 553 and y > 243 and y < 293:
                             img = img_pre_game
                         if x > 238 and x < 553 and y > 317 and y < 365:
-                            print("Instrucciones")
+                            print("Instructions")
                             img = img_instructions
                         if x > 238 and x < 553 and y > 392 and y < 440:
-                            print("Salir")
+                            print("Quit")
                             game_over = True
                 elif img == img_instructions:
                     if x > 0 and x < 800 and y > 0 and y < 600:
@@ -48,8 +55,10 @@ def menu():
                     if x > 0 and x < 800 and y > 0 and y < 600:
                         if x > 160 and x < 380 and y > 209 and y < 435:
                             main(1)
+                            img = img_menu
                         if x > 470 and x < 688 and y > 209 and y < 435:
                             main(2)
+                            img = img_menu
                         if x > 28 and x < 110 and y > 496 and y < 570:
                             img = img_menu
         # Hover effect on buttons
@@ -69,11 +78,11 @@ def menu():
                         img_quit_buton = pygame.image.load("interface/quit_button.png")
                         screen.blit(img_quit_buton, (238, 390))
                         pygame.display.update()
-
-        pygame.display.update()
-        screen.blit(img, (0, 0))  
+        clock.tick(60)
+    
     pygame.quit()
-        
+    pygame.mixer.quit()
+    
 
 if __name__ == "__main__":
     menu()
