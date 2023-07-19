@@ -1,18 +1,9 @@
 from classes import *
 
 
-
 def main(character):
-    import pygame
-    import pygame.mixer
-    from main_menu import menu
-
-
-    pygame.init()
-    pygame.mixer.init()
-
     # Create an 800x600 sized screen
-    screen = pygame.display.set_mode((800, 600), pygame.SRCALPHA, pygame.NOFRAME)
+    screen = pygame.display.set_mode((800, 600), pygame.NOFRAME, pygame.SRCALPHA)
 
     # Set the title of the window
     pygame.display.set_caption('Spectral Escape')
@@ -53,6 +44,7 @@ def main(character):
         player.walking_frames_u.append(pygame.image.load("characters/player_2/idle_up.png").convert())
         player.walking_frames_d.append(pygame.image.load("characters/player_2/idle_down.png").convert())
         npc_img = pygame.image.load("characters/player_1/idle_down.png").convert()
+
         # Add the walking images to the player's walking frames
         for animation in ["walk_left", "walk_right", "walk_up", "walk_down"]:
             for i in range(1, 3):
@@ -117,9 +109,10 @@ def main(character):
 
     #  Start music
     pygame.mixer.music.play(-1)
+
+    #  ---Start the game ( main loop )---
     while not game_over:
         
-
         # --- Event Processing ---
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -237,7 +230,7 @@ def main(character):
                                     msg = font.render("You do not have any key...", True, WHITE)
                             current_room = rooms[current_room_no]
 
-                    #  If the player is colliding with an item, add it to the player's key list  
+                    #  If the player is colliding with an key, add it to the player's key list  
                     for item in current_room.interactives_list:
                         if player.rect.colliderect(item.rect):
                             player.key_list.add(item)
@@ -363,13 +356,9 @@ def main(character):
         #  Limit to 60 frames per second
         clock.tick(60)
 
-    
-    menu()
-    
-if __name__ == "__main__":
-    pygame.display.quit()
-    pygame.quit()
-    pygame.mixer.quit()
-
-
+    player.kill()
+    del player
+    player = None
+    pygame.mixer.music.stop()
+    #menu()
         
