@@ -59,11 +59,10 @@ def main(character):
                 elif animation == "walk_down":
                     player.walking_frames_d.append(image)
 
-    
 
     moving_sprites = pygame.sprite.Group()
     # Add the player to a list of moving sprites
-    moving_sprites.add(player)
+    #moving_sprites.add(player)
 
     # Create the rooms list
     rooms = []
@@ -238,7 +237,7 @@ def main(character):
                             current_room.interactives_list.remove(item)
                             
             #  If the user lets go of a key...
-            if event.type == pygame.KEYUP:
+            elif event.type == pygame.KEYUP:
                 if event.key == pygame.K_a:
                     player.changespeed(2, 0)
                     #  Set idle frame to player's left
@@ -277,6 +276,7 @@ def main(character):
         if len(current_room.enemy_list) != 0:
             for enemy in current_room.enemy_list:
                 control += 1
+                #  This control its to make the ghosts move in a different direction, not all at the same direction
                 if type(enemy) == WhiteGhost:
                     if isinstance(enemy, WhiteGhost) and control%2 != 0:
                         enemy.ghost_move("right")
@@ -291,6 +291,7 @@ def main(character):
                     elif isinstance(enemy, BlueGhost) and control%2 == 0:
                         enemy.ghost_move("down")
                         enemy.change_sprite("down")
+                #  The black ghost moves randomly
                 elif type(enemy) == BlackGhost:
                     enemy.ghost_move()
                     enemy.change_sprite()                    
@@ -348,6 +349,7 @@ def main(character):
             current_room.interactives_list.draw(screen)
 
         #  Draw the the entities
+        screen.blit(player.image, [player.rect.x, player.rect.y - 40])   
         moving_sprites.draw(screen)
         
         #  Update the screen
@@ -358,7 +360,5 @@ def main(character):
 
     player.kill()
     del player
-    player = None
     pygame.mixer.music.stop()
-    #menu()
         

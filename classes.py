@@ -56,14 +56,6 @@ class Entity(pygame.sprite.Sprite):
 
 
 class Player(Entity):
-    # List of keys
-    key_list = None
-    # All frames of left/right facing
-    walking_frames_l = []
-    walking_frames_r = []
-    # All frames of up/down facing
-    walking_frames_u = []
-    walking_frames_d = []
 
     def __init__(self, x, y):
         super().__init__(x, y)
@@ -72,6 +64,9 @@ class Player(Entity):
         self.image = pygame.Surface([30, 25], pygame.SRCALPHA)
         self.image.fill((0, 0, 0, 0))
         self.walking_frames_u = []
+        self.walking_frames_d = []
+        self.walking_frames_l = []
+        self.walking_frames_r = []
 
         self.rect = self.image.get_rect()
         self.rect.y = y
@@ -567,5 +562,3 @@ class Key(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
-        
-

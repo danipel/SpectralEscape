@@ -3,7 +3,7 @@ import pygame.mixer
 from SpectralEscape import main
 
 
-#  Initialize pygame and mixer (for sound)
+#  Initialize pygame and mixer(for sound)
 pygame.init()
 pygame.mixer.init()
 
@@ -28,8 +28,8 @@ def menu():
     #  Initialize control variable
     game_over = False
     while not game_over:
-        pygame.display.update()
         screen.blit(img, (0, 0)) 
+        pygame.display.update()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -82,6 +82,7 @@ def menu():
     
     pygame.quit()
     pygame.mixer.quit()
+    quit()
     
 
 if __name__ == "__main__":
